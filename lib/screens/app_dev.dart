@@ -106,7 +106,7 @@ class _MyAppDevPageState extends State<MyAppDevPage> {
               icon: const FaIcon(FontAwesomeIcons.github),
               tooltip: 'GitHub Repozitár',
               onPressed: () async {
-                const url = 'https://github.com/rigo888/letecke_testy_ppla';
+                const url = 'https://github.com/ra1g-eu/letecke_testy_final';
                 if (await canLaunch(url)) {
                   await launch(url);
                 } else {
@@ -270,7 +270,7 @@ class ChangelogsList extends StatelessWidget {
                     onPressed: () async {
                       var url;
                       if(changelog[index].verzia.contains("najnovšia", 4)){
-                        url = 'https://github.com/ra1g-eu/letecke_testy_ppla';
+                        url = 'https://github.com/ra1g-eu/letecke_testy_final';
                       } else {
                         url = 'https://lt.ra1g.eu/downloads.php';
                       }
@@ -296,7 +296,7 @@ class ChangelogsList extends StatelessWidget {
                     onPressed: () async {
                       var url;
                       if(changelog[index].verzia.contains("najnovšia", 4)){
-                        url = 'https://github.com/ra1g-eu/letecke_testy_ppla';
+                        url = 'https://github.com/ra1g-eu/letecke_testy_final';
                       } else {
                         url = 'https://lt.ra1g.eu/downloads.php';
                       }
