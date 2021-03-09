@@ -1,16 +1,13 @@
 # Testeri aplikácie
 
 Testeri aplikácie sú veľmi dôležití pri vývoji všetkých druhov aplikácií a inak to nie je ani pri appke Letecké testy PPL(A).
-Za ich pomoc a feedback ohľadom dizajnu aplikácie, funkcionality, ale aj za ich podporu im ďakujem.
+Ďakujem im za pomoc a feedback ohľadom dizajnu aplikácie, funkcionality a iných.
 
 - ### Lucia G.
-alpha & beta tester aplikácie už od samého začiatku, jej feedback bol nesmierne užitocný
+alpha & beta tester aplikácie už od samého začiatku, jej feedback ohľadom UI bol nesmierne užitocný
 
-- ### Michal B.
-alpha a beta tester od skorého začiatku
+- ### Michal B., Jakub K.
+alpha a beta testeri
 
-- ### Vladislav S.
-beta tester
-
-- ### Jakub K.
-beta tester
+- ### Filip Š.
+beta tester, vďaka jeho feedbacku bola upravená obrazovka skúšky a obrazovka detailu otázky

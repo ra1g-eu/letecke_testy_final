@@ -8,13 +8,14 @@ Aplikácia obsahuje oficiálne kategórie na testovanie, otázky & odpovede, zoz
 
 - 9 oficiálnych kategórií
 - každá kategória má minimálne 60 otázok
-- mód "Skúška" kde si používateľ vyberie kategóriu, počet otázok a čas
-- mód "Precvičovanie" kde používateľ vidí správne odpovede a precvičí si otázky na skúšku
+- mód "Skúška", kde si používateľ vyberie kategórie, počet otázok a čas
+- mód "Precvičovanie", kde používateľ vidí správne odpovede a precvičí si otázky na skúšku
+- mód "Preskúmanie otázok", kde sú zobrazené všetky otázky v databáze
 - obrazovka 'Moje skúšky', kde je zoznam predošlých skúšok a ich výsledok
 
 ## Upozornenie
 
-Aplikácia nie je oficiálnou aplikáciou pre testovanie, slúži len na informačné účely. Použitie je len na vlastnú úvahu. Používaním aplikácie rozumiete tomuto varovaniu.
+Aplikácia nie je oficiálnou aplikáciou pre testovanie, slúži len na informačné účely. Používaním aplikácie rozumiete tomuto upozorneniu.
 
 
 

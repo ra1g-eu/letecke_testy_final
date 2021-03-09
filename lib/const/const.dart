@@ -2,7 +2,6 @@
 final keyIsFirstLoaded = 'is_first_loaded';
 final showHomePageTip = 'show_home_page_tip';
 final showFirstTimeTestsTip = 'show_first_time_tests_tip';
-final showFirstTimeQuestionDetailTip = 'show_first_time_question_detail_tip';
 
 final statusBarC = 'status_bar_color';
 final navBarC = 'nav_bar_color';

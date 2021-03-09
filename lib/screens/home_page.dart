@@ -1026,7 +1026,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      'Ak si nevieš vybrať jednu z kategórií, tak tu môžeš preskúmať vyše 900 otázok a to všetko na jednom mieste.',
+                                      'Ak si nechceš vybrať konkrétnu kategóriu, tak tu môžeš preskúmať dostupné otázky zo všetkých kategórií.',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -1054,7 +1054,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                                     "#" +
                                     _packageInfo.buildNumber.toString(),
                                 style: TextStyle(
-                                    fontSize: 16, fontStyle: FontStyle.normal),
+                                    fontSize: 15, fontStyle: FontStyle.normal),
                               )),
                               dense: true,
                               contentPadding: EdgeInsets.symmetric(

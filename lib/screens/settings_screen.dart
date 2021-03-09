@@ -156,9 +156,6 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                   prefs.setBool('show_home_page_tip', null);
                                   prefs.setBool(
                                       'show_first_time_tests_tip', null);
-                                  prefs.setBool(
-                                      'show_first_time_question_detail_tip',
-                                      null);
                                   showConfirmationFlushBar(context,
                                       "Preferencie", "Úspešne vymazané.");
                                 },
@@ -189,9 +186,6 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                   prefs.setBool('show_home_page_tip', false);
                                   prefs.setBool(
                                       'show_first_time_tests_tip', false);
-                                  prefs.setBool(
-                                      'show_first_time_question_detail_tip',
-                                      false);
                                   showConfirmationFlushBar(context,
                                       "Preferencie", "Úspešne uložené.");
                                 },
@@ -265,9 +259,11 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                     borderRadius: BorderRadius.circular(4.0)),
                                 onPressed: () {
                                   showDialog(
+                                    barrierColor: Colors.black54,
                                       context: context,
                                       useRootNavigator: false,
                                       builder: (_) => new AlertDialog(
+                                        backgroundColor: Colors.indigo[500],
                                             title: Text('Vymazať'),
                                             content:
                                                 Text('Vymazať všetky skúšky?'),
