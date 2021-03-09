@@ -119,7 +119,7 @@ class QuestionBody extends StatelessWidget {
                                     },
                                   ),
                                 )),
-                            Padding(padding: EdgeInsets.only(top: 9)),
+                            Padding(padding: EdgeInsets.only(top: 10)),
                             Divider(
                               thickness: 2,
                               height: 1,
@@ -130,152 +130,174 @@ class QuestionBody extends StatelessWidget {
                                 padding: EdgeInsets.only(
                                   top: 10,
                                 )),
-                            Expanded(
-                              flex: 0,
-                              child: ListTile(
-                                title: Text(
-                                  '${e.value.answerA}',
-                                  style: TextStyle(
-                                      color: isShowAnswer
-                                          ? e.value.correctAnswer == 'A'
-                                          ? Colors.green
-                                          : Colors.grey
-                                          : Colors.white,
-                                      fontSize: 18.5,
-                                      fontWeight: isShowAnswer
-                                          ? e.value.correctAnswer == 'A' ? FontWeight.bold : FontWeight.w300 : getGroupValue(isShowAnswer, e, userAnswerState) == 'A' ? FontWeight.w500 : FontWeight.w300,
-                                      fontFamily: 'Roboto'),
-                                  softWrap: true,
-                                ),
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.indigo[900],
-                                  child: Text(
-                                    "A",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  foregroundColor: Colors.white,
-                                ),
-                                trailing: isInReadMode ? null : Transform.scale(
-                                  scale: 1.35,
-                                  child: Radio(
-                                    activeColor: Colors.indigo[900],
-                                    value: 'A',
-                                    groupValue: getGroupValue(
-                                        isShowAnswer,
-                                        e,
-                                        userAnswerState),
-                                    onChanged: (value) => setUserAnswer(
-                                        context, e, value),
-                                  ),
-                                ),
-                                contentPadding: EdgeInsets.all(4),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 5),
-                            ),
-                            Divider(
-                              indent: 50,
-                              endIndent: 50,
-                            ),
-                            Expanded(
-                              flex: 0,
-                              child: ListTile(
-                                title: Text(
-                                  '${e.value.answerB}',
-                                  style: TextStyle(
-                                      color: isShowAnswer
-                                          ? e.value.correctAnswer == 'B'
-                                          ? Colors.green
-                                          : Colors.grey
-                                          : Colors.white,
-                                      fontSize: 18.5,
-                                      fontWeight: isShowAnswer
-                                          ? e.value.correctAnswer == 'B' ? FontWeight.bold : FontWeight.w300 : getGroupValue(isShowAnswer, e, userAnswerState) == 'B' ? FontWeight.w500 : FontWeight.w300,
-                                      fontFamily: 'Roboto'),
-                                  softWrap: true,
-                                ),
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.indigo[900],
-                                  child: Text(
-                                    "B",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  foregroundColor: Colors.white,
-                                ),
-                                trailing: isInReadMode ? null : Transform.scale(
-                                  scale: 1.35,
-                                  child: Radio(
-                                    activeColor: Colors.indigo[900],
-                                    value: 'B',
-                                    groupValue: getGroupValue(
-                                        isShowAnswer,
-                                        e,
-                                        userAnswerState),
-                                    onChanged: (value) => setUserAnswer(
-                                        context, e, value),
-                                  ),
-                                ),
-                                contentPadding: EdgeInsets.all(4),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 5),
-                            ),
-                            Divider(
-                              indent: 50,
-                              endIndent: 50,
-                            ),
-                            Expanded(
-                              flex: 0,
-                                child: ListTile(
-                                  title: Text(
-                                    '${e.value.answerC}',
-                                    style: TextStyle(
-                                        color: isShowAnswer
-                                            ? e.value.correctAnswer ==
-                                            'C'
-                                            ? Colors.green
-                                            : Colors.grey
-                                            : Colors.white,
-                                        fontSize: 18.5,
-                                        fontWeight: isShowAnswer
-                                            ? e.value.correctAnswer == 'C' ? FontWeight.bold : FontWeight.w300 : getGroupValue(isShowAnswer, e, userAnswerState) == 'C' ? FontWeight.w500 : FontWeight.w300,
-                                        fontFamily: 'Roboto'),
-                                    softWrap: true,
-                                  ),
-                                  leading: CircleAvatar(
-                                    backgroundColor:
-                                    Colors.indigo[900],
-                                    child: Text(
-                                      "C",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    foregroundColor: Colors.white,
-                                  ),
-                                  trailing: isInReadMode ? null : Transform.scale(
-                                    scale: 1.35,
-                                    child: Radio(
-                                      activeColor: Colors.indigo[900],
-                                      value: 'C',
-                                      groupValue: getGroupValue(
-                                          isShowAnswer,
-                                          e,
-                                          userAnswerState),
-                                      onChanged: (value) =>
-                                          setUserAnswer(
-                                              context, e, value),
+                            Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Expanded(
+                                      flex: 0,
+                                      child: Card(
+                                        shape: BeveledRectangleBorder(
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                bottomRight: Radius.circular(10))),
+                                        color: getGroupValue(isShowAnswer, e, userAnswerState) == 'A' ? Colors.blue[900]: Colors.transparent,
+                                        child: ListTile(
+                                          title: Text(
+                                            '${e.value.answerA}',
+                                            style: TextStyle(
+                                                color: isShowAnswer
+                                                    ? e.value.correctAnswer == 'A'
+                                                    ? Colors.green
+                                                    : Colors.grey
+                                                    : Colors.white,
+                                                fontSize: 18.5,
+                                                fontWeight: isShowAnswer
+                                                    ? e.value.correctAnswer == 'A' ? FontWeight.bold : FontWeight.w300 : getGroupValue(isShowAnswer, e, userAnswerState) == 'A' ? FontWeight.w500 : FontWeight.w300,
+                                                fontFamily: 'Roboto'),
+                                            softWrap: true,
+                                          ),
+                                          leading: CircleAvatar(
+                                            backgroundColor: Colors.indigo[900],
+                                            child: Text(
+                                              "A",
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            foregroundColor: Colors.white,
+                                          ),
+                                          trailing: isInReadMode ? null : Transform.scale(
+                                            scale: 1.35,
+                                            child: Radio(
+                                              activeColor: Colors.indigo[900],
+                                              value: 'A',
+                                              groupValue: getGroupValue(
+                                                  isShowAnswer,
+                                                  e,
+                                                  userAnswerState),
+                                              onChanged: (value) => setUserAnswer(
+                                                  context, e, value),
+                                            ),
+                                          ),
+                                          contentPadding: EdgeInsets.all(4),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  contentPadding: EdgeInsets.all(4),
-                                )),
-                            SizedBox(height: 10,),
+                                  SizedBox(height: 15,),
+                                  Container(
+                                    child: Expanded(
+                                      flex: 0,
+                                      child: Card(
+                                        shape: BeveledRectangleBorder(
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                bottomRight: Radius.circular(10))),
+                                        color: getGroupValue(isShowAnswer, e, userAnswerState) == 'B' ? Colors.blue[900]: Colors.transparent,
+                                        child: ListTile(
+                                          title: Text(
+                                            '${e.value.answerB}',
+                                            style: TextStyle(
+                                                color: isShowAnswer
+                                                    ? e.value.correctAnswer == 'B'
+                                                    ? Colors.green
+                                                    : Colors.grey
+                                                    : Colors.white,
+                                                fontSize: 18.5,
+                                                fontWeight: isShowAnswer
+                                                    ? e.value.correctAnswer == 'B' ? FontWeight.bold : FontWeight.w300 : getGroupValue(isShowAnswer, e, userAnswerState) == 'B' ? FontWeight.w500 : FontWeight.w300,
+                                                fontFamily: 'Roboto'),
+                                            softWrap: true,
+                                          ),
+                                          leading: CircleAvatar(
+                                            backgroundColor: Colors.indigo[900],
+                                            child: Text(
+                                              "B",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            foregroundColor: Colors.white,
+                                          ),
+                                          trailing: isInReadMode ? null : Transform.scale(
+                                            scale: 1.35,
+                                            child: Radio(
+                                              activeColor: Colors.indigo[900],
+                                              value: 'B',
+                                              groupValue: getGroupValue(
+                                                  isShowAnswer,
+                                                  e,
+                                                  userAnswerState),
+                                              onChanged: (value) => setUserAnswer(
+                                                  context, e, value),
+                                            ),
+                                          ),
+                                          contentPadding: EdgeInsets.all(4),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 15,),
+                                  Container(
+                                    child: Expanded(
+                                      flex: 0,
+                                      child: Card(
+                                        shape: BeveledRectangleBorder(
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                bottomRight: Radius.circular(10))),
+                                        color: getGroupValue(isShowAnswer, e, userAnswerState) == 'C' ? Colors.blue[900]: Colors.transparent,
+                                        child: ListTile(
+                                          title: Text(
+                                            '${e.value.answerC}',
+                                            style: TextStyle(
+                                                color: isShowAnswer
+                                                    ? e.value.correctAnswer ==
+                                                    'C'
+                                                    ? Colors.green
+                                                    : Colors.grey
+                                                    : Colors.white,
+                                                fontSize: 18.5,
+                                                fontWeight: isShowAnswer
+                                                    ? e.value.correctAnswer == 'C' ? FontWeight.bold : FontWeight.w300 : getGroupValue(isShowAnswer, e, userAnswerState) == 'C' ? FontWeight.w500 : FontWeight.w300,
+                                                fontFamily: 'Roboto'),
+                                            softWrap: true,
+                                          ),
+                                          leading: CircleAvatar(
+                                            backgroundColor:
+                                            Colors.indigo[900],
+                                            child: Text(
+                                              "C",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            foregroundColor: Colors.white,
+                                          ),
+                                          trailing: isInReadMode ? null : Transform.scale(
+                                            scale: 1.35,
+                                            child: Radio(
+                                              activeColor: Colors.indigo[900],
+                                              value: 'C',
+                                              groupValue: getGroupValue(
+                                                  isShowAnswer,
+                                                  e,
+                                                  userAnswerState),
+                                              onChanged: (value) =>
+                                                  setUserAnswer(
+                                                      context, e, value),
+                                            ),
+                                          ),
+                                          contentPadding: EdgeInsets.all(4),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 15,),
                           ],
                         ),
                       );

@@ -85,7 +85,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
                         builder: (context, snapshot) {
                           if (snapshot.hasError)
                             return Center(
-                              child: Text('${snapshot.error}'),
+                              child: Text('Kategória pravdepodobne ešte neobsahuje otázky.\nChyba: ${snapshot.error}'),
                             );
                           else if (snapshot.hasData) {
                             if (snapshot.data.length > 0) {
@@ -97,9 +97,8 @@ class _MyReadModePageState extends State<MyReadModePage> {
                                   shape: new BeveledRectangleBorder(
                                       borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                      side: BorderSide(color: Colors.indigo[900], width: 1.5)),
-                                  shadowColor: Colors.black,
+                                          bottomRight: Radius.circular(10))),
+                                  shadowColor: Colors.black54,
                                   clipBehavior: Clip.hardEdge,
                                   margin: const EdgeInsets.all(4),
                                   child: QuestionBody(
@@ -298,16 +297,12 @@ class _MyReadModePageState extends State<MyReadModePage> {
         builder: (_) => new AlertDialog(
           backgroundColor: Colors.indigo[500],
               title: Text('Zatvoriť'),
-              content: Text('Chceš uložiť aktuálne otázky?'),
+              content: Text('Chceš uložiť aktuálnu otázku?'),
               actions: [
                 OutlineButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // zatvoriť dialogove okno
                     Navigator.pop(context);
-                    /*Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProviderScope(child:MyApp())),
-                );*/ // zatvorit celu obrazovku
                   },
                   child: Text(
                     'Nie',
@@ -327,10 +322,6 @@ class _MyReadModePageState extends State<MyReadModePage> {
                         context.read(currentReadPage).state);
                     Navigator.of(context).pop(); // zatvoriť dialogove okno
                     Navigator.pop(context); // zatvorit celu obrazovku
-                    /*Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProviderScope(child:MyApp())),
-                );*/
                   },
                   child: Text(
                     'Áno',

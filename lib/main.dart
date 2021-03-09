@@ -120,7 +120,7 @@ class _MySplashState extends State<MySplash> {
   void startTimer() {
     int randomLoadNumber;
     Random random = new Random();
-    randomLoadNumber = random.nextInt(400) + 700;
+    randomLoadNumber = random.nextInt(500) + 500;
     print(randomLoadNumber);
     Timer.periodic(Duration(milliseconds: randomLoadNumber), (t) {
       setState(() {

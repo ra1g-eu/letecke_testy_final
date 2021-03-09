@@ -253,13 +253,11 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                         }),
                   ],
                 ),
-                body: Container(
-                    padding: const EdgeInsets.all(10),
+                body: SingleChildScrollView(
+                  padding: EdgeInsets.all(10),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Expanded(
-                            child: Column(
-                              children: [
                                 AutoSizeText(
                                   '${currentQuestion.questionText}',
                                   style: TextStyle(fontSize: 19.5, fontWeight: FontWeight.w500),
@@ -311,119 +309,206 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                                   indent: 2,
                                 ),
                                 Padding(padding: EdgeInsets.only(top: 15)),
-                                // ak je otazka s obrazkom, zobraz obrazok
-                                Expanded(
-                                    child: ListTile(
-                                      title: AutoSizeText(
-                                        '${currentQuestion.answerA}',
-                                        style: TextStyle(
-                                            color: ((currentQuestion.correctAnswer ==
-                                                'A' &&
-                                                aA.aA == 'A') ||
-                                                currentQuestion.correctAnswer == 'A')
-                                                ? Colors.yellow.shade300
-                                                : ((currentQuestion.correctAnswer ==
-                                                'A') !=
-                                                (aA.aA == 'A'))
-                                                ? Colors.black
-                                                : Colors.white,
-                                            fontSize: 17.5,
-                                            fontWeight: FontWeight.w400),
+                                Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: Expanded(
+                                          flex: 0,
+                                          child: Card(
+                                            shape: BeveledRectangleBorder(
+                                                borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(10),
+                                                    bottomRight: Radius.circular(10))),
+                                            color: Colors.transparent,
+                                            child: ListTile(
+                                              title: Text(
+                                                '${currentQuestion.answerA}',
+                                                style: TextStyle(
+                                                  color: ((currentQuestion.correctAnswer ==
+                                                      'A' &&
+                                                      aA.aA == 'A') ||
+                                                      currentQuestion.correctAnswer == 'A')
+                                                      ? Colors.green.shade200
+                                                      : ((currentQuestion.correctAnswer ==
+                                                      'A') !=
+                                                      (aA.aA == 'A'))
+                                                      ? Colors.deepOrange.shade600
+                                                      : Colors.white,
+                                                  fontSize: ((currentQuestion.correctAnswer ==
+                                                      'A' &&
+                                                      aA.aA == 'A') ||
+                                                      currentQuestion.correctAnswer == 'A')
+                                                      ? 21
+                                                      : ((currentQuestion.correctAnswer ==
+                                                      'A') !=
+                                                      (aA.aA == 'A'))
+                                                      ? 20
+                                                      : 17.5,
+                                                  fontWeight: ((currentQuestion.correctAnswer ==
+                                                      'A' &&
+                                                      aA.aA == 'A') ||
+                                                      currentQuestion.correctAnswer == 'A')
+                                                      ? FontWeight.bold
+                                                      : ((currentQuestion.correctAnswer ==
+                                                      'A') !=
+                                                      (aA.aA == 'A'))
+                                                      ? FontWeight.w900
+                                                      : FontWeight.w400,),
+                                              ),
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.indigo[900],
+                                                child: Text(
+                                                  "A",
+                                                  style: TextStyle(
+                                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                                ),
+                                                foregroundColor: Colors.white,
+                                              ),
+                                              trailing: Transform.scale(
+                                                scale: 1.3,
+                                                child: Radio(
+                                                    activeColor: Colors.indigo[900],
+                                                    value: 'A',
+                                                    groupValue: aA.aA,
+                                                    onChanged: null),
+                                              ),
+                                            ),
+                                          ),),
                                       ),
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.indigo[900],
-                                        child: Text(
-                                          "A",
-                                          style: TextStyle(
-                                              fontSize: 20, fontWeight: FontWeight.bold),
-                                        ),
-                                        foregroundColor: Colors.white,
+                                      SizedBox(height: 15,),
+                                      Container(
+                                        child: Expanded(
+                                          flex: 0,
+                                          child: Card(
+                                            shape: BeveledRectangleBorder(
+                                                borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(10),
+                                                    bottomRight: Radius.circular(10))),
+                                            color: Colors.transparent,
+                                            child: ListTile(
+                                              title: Text(
+                                                '${currentQuestion.answerB}',
+                                                style: TextStyle(
+                                                    color: ((currentQuestion.correctAnswer ==
+                                                        'B' &&
+                                                        aA.aA == 'B') ||
+                                                        currentQuestion.correctAnswer == 'B')
+                                                        ? Colors.green.shade200
+                                                        : ((currentQuestion.correctAnswer ==
+                                                        'B') !=
+                                                        (aA.aA == 'B'))
+                                                        ? Colors.deepOrange.shade600
+                                                        : Colors.white,
+                                                    fontSize: ((currentQuestion.correctAnswer ==
+                                                        'B' &&
+                                                        aA.aA == 'B') ||
+                                                        currentQuestion.correctAnswer == 'B')
+                                                        ? 21
+                                                        : ((currentQuestion.correctAnswer ==
+                                                        'B') !=
+                                                        (aA.aA == 'B'))
+                                                        ? 19
+                                                        : 17.5,
+                                                    fontWeight: ((currentQuestion.correctAnswer ==
+                                                        'B' &&
+                                                        aA.aA == 'B') ||
+                                                        currentQuestion.correctAnswer == 'B')
+                                                        ? FontWeight.bold
+                                                        : ((currentQuestion.correctAnswer ==
+                                                        'B') !=
+                                                        (aA.aA == 'B'))
+                                                        ? FontWeight.w900
+                                                        : FontWeight.w400),
+                                              ),
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.indigo[900],
+                                                child: Text(
+                                                  "B",
+                                                  style: TextStyle(
+                                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                                ),
+                                                foregroundColor: Colors.white,
+                                              ),
+                                              trailing: Transform.scale(
+                                                scale: 1.3,
+                                                child: Radio(
+                                                    activeColor: Colors.indigo[900],
+                                                    value: 'B',
+                                                    groupValue: aA.aA,
+                                                    onChanged: null),
+                                              ),
+                                            ),
+                                          ),),
                                       ),
-                                      trailing: Transform.scale(
-                                        scale: 1.3,
-                                        child: Radio(
-                                            activeColor: Colors.indigo[900],
-                                            value: 'A',
-                                            groupValue: aA.aA,
-                                            onChanged: null),
-                                      ),
-                                    )),
-                                //odpoved A
-                                Expanded(
-                                    child: ListTile(
-                                      title: AutoSizeText(
-                                        '${currentQuestion.answerB}',
-                                        style: TextStyle(
-                                            color: ((currentQuestion.correctAnswer ==
-                                                'B' &&
-                                                aA.aA == 'B') ||
-                                                currentQuestion.correctAnswer == 'B')
-                                                ? Colors.yellow.shade300
-                                                : ((currentQuestion.correctAnswer ==
-                                                'B') !=
-                                                (aA.aA == 'B'))
-                                                ? Colors.black
-                                                : Colors.white,
-                                            fontSize: 17.5,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.indigo[900],
-                                        child: Text(
-                                          "B",
-                                          style: TextStyle(
-                                              fontSize: 20, fontWeight: FontWeight.bold),
-                                        ),
-                                        foregroundColor: Colors.white,
-                                      ),
-                                      trailing: Transform.scale(
-                                        scale: 1.3,
-                                        child: Radio(
-                                            activeColor: Colors.indigo[900],
-                                            value: 'B',
-                                            groupValue: aA.aA,
-                                            onChanged: null),
-                                      ),
-                                    )),
-                                //odpoved B
-                                Expanded(
-                                    child: ListTile(
-                                      title: AutoSizeText(
-                                        '${currentQuestion.answerC}',
-                                        style: TextStyle(
-                                            color: ((currentQuestion.correctAnswer ==
-                                                'C' &&
-                                                aA.aA == 'C') ||
-                                                currentQuestion.correctAnswer == 'C')
-                                                ? Colors.lightGreenAccent
-                                                : ((currentQuestion.correctAnswer ==
-                                                'C') !=
-                                                (aA.aA == 'C'))
-                                                ? Colors.black
-                                                : Colors.white,
-                                            fontSize: 17.5,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.indigo[900],
-                                        child: Text(
-                                          "C",
-                                          style: TextStyle(
-                                              fontSize: 20, fontWeight: FontWeight.bold),
-                                        ),
-                                        foregroundColor: Colors.white,
-                                      ),
-                                      trailing: Transform.scale(
-                                        scale: 1.3,
-                                        child: Radio(
-                                            activeColor: Colors.indigo[900],
-                                            value: 'C',
-                                            groupValue: aA.aA,
-                                            onChanged: null),
-                                      ),
-                                    )),
-                              ],
-                            ))
+                                      SizedBox(height: 15,),
+                                      Container(
+                                        child: Expanded(
+                                          flex: 0,
+                                          child: Card(
+                                            shape: BeveledRectangleBorder(
+                                                borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(10),
+                                                    bottomRight: Radius.circular(10))),
+                                            color: Colors.transparent,
+                                            child: ListTile(
+                                              title: Text(
+                                                '${currentQuestion.answerC}',
+                                                style: TextStyle(
+                                                  color: ((currentQuestion.correctAnswer ==
+                                                      'C' &&
+                                                      aA.aA == 'C') ||
+                                                      currentQuestion.correctAnswer == 'C')
+                                                      ? Colors.green.shade200
+                                                      : ((currentQuestion.correctAnswer ==
+                                                      'C') !=
+                                                      (aA.aA == 'C'))
+                                                      ? Colors.deepOrange.shade600
+                                                      : Colors.white,
+                                                  fontSize: ((currentQuestion.correctAnswer ==
+                                                      'C' &&
+                                                      aA.aA == 'C') ||
+                                                      currentQuestion.correctAnswer == 'C')
+                                                      ? 21
+                                                      : ((currentQuestion.correctAnswer ==
+                                                      'C') !=
+                                                      (aA.aA == 'C'))
+                                                      ? 19
+                                                      : 17.5,
+                                                  fontWeight: ((currentQuestion.correctAnswer ==
+                                                      'C' &&
+                                                      aA.aA == 'C') ||
+                                                      currentQuestion.correctAnswer == 'C')
+                                                      ? FontWeight.bold
+                                                      : ((currentQuestion.correctAnswer ==
+                                                      'C') !=
+                                                      (aA.aA == 'C'))
+                                                      ? FontWeight.w900
+                                                      : FontWeight.w400,),
+                                              ),
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.indigo[900],
+                                                child: Text(
+                                                  "C",
+                                                  style: TextStyle(
+                                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                                ),
+                                                foregroundColor: Colors.white,
+                                              ),
+                                              trailing: Transform.scale(
+                                                scale: 1.3,
+                                                child: Radio(
+                                                    activeColor: Colors.indigo[900],
+                                                    value: 'C',
+                                                    groupValue: aA.aA,
+                                                    onChanged: null),
+                                              ),
+                                            ),
+                                          ),),
+                                      )
+                                    ],
+                                  ),
+                                ),
                       ],
                     ))),
           ),

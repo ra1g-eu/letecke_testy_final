@@ -1,9 +1,7 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:letecky_testy/const/const.dart';
 import 'package:letecky_testy/database/db_helper.dart';
@@ -60,10 +58,7 @@ class _MyResultPageState extends State<MyResultPage> {
           .where((answer) => answer.isCorrect)
           .toList()
           .length;
-      myNumberOfWrongQuestions = (context
-          .read(userListAnswer)
-          .state
-          .length) -
+      myNumberOfWrongQuestions = (context.read(userListAnswer).state.length) -
           (context
               .read(userListAnswer)
               .state
@@ -82,37 +77,31 @@ class _MyResultPageState extends State<MyResultPage> {
           .where((answer) => answer.answered.isEmpty)
           .toList()
           .length;
-      myNumberOfAllQuestions = context
-          .read(userListAnswer)
-          .state
-          .length;
+      myNumberOfAllQuestions = context.read(userListAnswer).state.length;
       _currTime = DateFormat("dd.MM.yyyy, HH:mm").format(DateTime.now());
       _insertUserAnswer(
           (((context
-              .read(userListAnswer)
-              .state
-              .where((answer) => answer.isCorrect)
-              .toList()
-              .length) *
-              100) /
-              context
-                  .read(userListAnswer)
-                  .state
-                  .length)
+                          .read(userListAnswer)
+                          .state
+                          .where((answer) => answer.isCorrect)
+                          .toList()
+                          .length) *
+                      100) /
+                  context.read(userListAnswer).state.length)
               .toStringAsFixed(2),
-          _currTime, myNumberOfWrongQuestions, myNumberOfCorrectQuestions,
-          myNumberOfEmptyQuestions, myNumberOfAllQuestions);
+          _currTime,
+          myNumberOfWrongQuestions,
+          myNumberOfCorrectQuestions,
+          myNumberOfEmptyQuestions,
+          myNumberOfAllQuestions);
       myPercentScore = (((context
-          .read(userListAnswer)
-          .state
-          .where((answer) => answer.isCorrect)
-          .toList()
-          .length) *
-          100) /
-          context
-              .read(userListAnswer)
-              .state
-              .length)
+                      .read(userListAnswer)
+                      .state
+                      .where((answer) => answer.isCorrect)
+                      .toList()
+                      .length) *
+                  100) /
+              context.read(userListAnswer).state.length)
           .toStringAsFixed(2);
       idWtf();
       //print(setState);
@@ -121,16 +110,6 @@ class _MyResultPageState extends State<MyResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        Duration.zero,
-            () =>
-            Fluttertoast.showToast(
-                msg: "Tip: klikni na otázku",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 17.0));
     return WillPopScope(
         child: Container(
           decoration: BoxDecoration(
@@ -161,11 +140,7 @@ class _MyResultPageState extends State<MyResultPage> {
                     icon: Icon(Icons.share_sharp),
                     onPressed: () {
                       var myNumberOfQuestions =
-                      context
-                          .read(userListAnswer)
-                          .state
-                          .length
-                          .toString();
+                          context.read(userListAnswer).state.length.toString();
                       final RenderBox box = context.findRenderObject();
                       Share.share(
                           "Moje hodnotenie zo skúšky PPL(A): " +
@@ -177,7 +152,7 @@ class _MyResultPageState extends State<MyResultPage> {
                               " správne!",
                           subject: "Výsledok skúšky PPL(A)",
                           sharePositionOrigin:
-                          box.localToGlobal(Offset.zero) & box.size);
+                              box.localToGlobal(Offset.zero) & box.size);
                     })
               ],
               title: Text('Výsledok skúšky'),
@@ -218,67 +193,56 @@ class _MyResultPageState extends State<MyResultPage> {
                                 lineWidth: 14,
                                 circularStrokeCap: CircularStrokeCap.round,
                                 progressColor: (context
-                                    .read(userListAnswer)
-                                    .state
-                                    .where((e) => e.isCorrect)
-                                    .toList()
-                                    .length /
-                                    context
-                                        .read(userListAnswer)
-                                        .state
-                                        .length >=
-                                    0.75
+                                                .read(userListAnswer)
+                                                .state
+                                                .where((e) => e.isCorrect)
+                                                .toList()
+                                                .length /
+                                            context
+                                                .read(userListAnswer)
+                                                .state
+                                                .length >=
+                                        0.75
                                     ? Colors.greenAccent.shade700
                                     : Colors.redAccent.shade700),
                                 percent: context
-                                    .read(userListAnswer)
-                                    .state
-                                    .where((e) => e.isCorrect)
-                                    .toList()
-                                    .length /
-                                    context
                                         .read(userListAnswer)
                                         .state
-                                        .length,
+                                        .where((e) => e.isCorrect)
+                                        .toList()
+                                        .length /
+                                    context.read(userListAnswer).state.length,
                                 center: AutoSizeText(
-                                  '${((context
-                                      .read(userListAnswer)
-                                      .state
-                                      .where((answer) => answer.isCorrect)
-                                      .toList()
-                                      .length * 100) / context
-                                      .read(userListAnswer)
-                                      .state
-                                      .length).toStringAsFixed(0)}%',
+                                  '${((context.read(userListAnswer).state.where((answer) => answer.isCorrect).toList().length * 100) / context.read(userListAnswer).state.length).toStringAsFixed(0)}%',
                                   style: TextStyle(
                                       color: (context
-                                          .read(userListAnswer)
-                                          .state
-                                          .where((e) => e.isCorrect)
-                                          .toList()
-                                          .length /
-                                          context
-                                              .read(userListAnswer)
-                                              .state
-                                              .length >=
-                                          0.75
+                                                      .read(userListAnswer)
+                                                      .state
+                                                      .where((e) => e.isCorrect)
+                                                      .toList()
+                                                      .length /
+                                                  context
+                                                      .read(userListAnswer)
+                                                      .state
+                                                      .length >=
+                                              0.75
                                           ? Colors.greenAccent.shade700
                                           : Colors.redAccent.shade700),
                                       shadows: [
                                         Shadow(
-                                          // bottomLeft
+                                            // bottomLeft
                                             offset: Offset(-1, -1),
                                             color: Colors.black),
                                         Shadow(
-                                          // bottomRight
+                                            // bottomRight
                                             offset: Offset(1, -1),
                                             color: Colors.black),
                                         Shadow(
-                                          // topRight
+                                            // topRight
                                             offset: Offset(1, 1),
                                             color: Colors.black),
                                         Shadow(
-                                          // topLeft
+                                            // topLeft
                                             offset: Offset(-1, 1),
                                             color: Colors.black),
                                       ],
@@ -290,53 +254,72 @@ class _MyResultPageState extends State<MyResultPage> {
                                   maxLines: 3,
                                 ),
                               ),
-                            ],),
+                            ],
+                          ),
                           Container(
                               child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(height: 19,
-                                          width: 45,
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(25)),
-                                            child: Container(color: (context
-                                                .read(userListAnswer)
-                                                .state
-                                                .where((e) => e.isCorrect)
-                                                .toList()
-                                                .length /
-                                                context
-                                                    .read(userListAnswer)
-                                                    .state
-                                                    .length >=
-                                                0.75
+                                  SizedBox(
+                                      height: 19,
+                                      width: 45,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(25)),
+                                        child: Container(
+                                            color: (context
+                                                            .read(
+                                                                userListAnswer)
+                                                            .state
+                                                            .where((e) =>
+                                                                e.isCorrect)
+                                                            .toList()
+                                                            .length /
+                                                        context
+                                                            .read(
+                                                                userListAnswer)
+                                                            .state
+                                                            .length >=
+                                                    0.75
                                                 ? Colors.greenAccent.shade700
-                                                : Colors.redAccent
-                                                .shade700)),)),
-                                      Text(' Môj výsledok', style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16),)
-                                    ],),
-                                  Divider(color: Colors.transparent,),
-                                  Row(
-                                    children: [
-                                      SizedBox(height: 19,
-                                          width: 45,
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(25)),
-                                            child: Container(
-                                              color: Colors.indigo[900],),)),
-                                      Text(' Minimum 75%', style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16),)
-                                    ],),
+                                                : Colors.redAccent.shade700)),
+                                      )),
+                                  Text(
+                                    ' Môj výsledok',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16),
+                                  )
                                 ],
-                              ))
+                              ),
+                              Divider(
+                                color: Colors.transparent,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                      height: 19,
+                                      width: 45,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(25)),
+                                        child: Container(
+                                          color: Colors.indigo[900],
+                                        ),
+                                      )),
+                                  Text(
+                                    ' Minimum 75%',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ))
                         ],
                       ),
                       Padding(padding: EdgeInsets.only(top: 8)),
@@ -360,9 +343,11 @@ class _MyResultPageState extends State<MyResultPage> {
                                       side: BorderSide(
                                           color: Colors.black, width: 0.7)),
                                   color: Colors.blue,
-                                  child: SizedBox(width: 35,
+                                  child: SizedBox(
+                                    width: 35,
                                     height: 35,
-                                    child: Icon(Icons.help_outline_outlined),),
+                                    child: Icon(Icons.help_outline_outlined),
+                                  ),
                                 ),
                                 title: Text(
                                   'Počet otázok:',
@@ -375,12 +360,15 @@ class _MyResultPageState extends State<MyResultPage> {
                                 ),
                                 isThreeLine: false,
                               ),
-                              Visibility(visible: (myNumberOfAllQuestions ==
-                                  myNumberOfEmptyQuestions ||
-                                  myNumberOfCorrectQuestions == 0 ||
-                                  myNumberOfWrongQuestions +
-                                      myNumberOfEmptyQuestions ==
-                                      myNumberOfAllQuestions) ? false : true,
+                              Visibility(
+                                visible: (myNumberOfAllQuestions ==
+                                            myNumberOfEmptyQuestions ||
+                                        myNumberOfCorrectQuestions == 0 ||
+                                        myNumberOfWrongQuestions +
+                                                myNumberOfEmptyQuestions ==
+                                            myNumberOfAllQuestions)
+                                    ? false
+                                    : true,
                                 child: ListTile(
                                   leading: Card(
                                     shape: new BeveledRectangleBorder(
@@ -390,9 +378,11 @@ class _MyResultPageState extends State<MyResultPage> {
                                         side: BorderSide(
                                             color: Colors.black, width: 0.7)),
                                     color: Colors.greenAccent.shade700,
-                                    child: SizedBox(width: 35,
+                                    child: SizedBox(
+                                      width: 35,
                                       height: 35,
-                                      child: Icon(Icons.check_outlined),),
+                                      child: Icon(Icons.check_outlined),
+                                    ),
                                   ),
                                   title: Text(
                                     'Správne odpovede:',
@@ -400,18 +390,17 @@ class _MyResultPageState extends State<MyResultPage> {
                                     textAlign: TextAlign.left,
                                   ),
                                   trailing: Text(
-                                    '${context
-                                        .read(userListAnswer)
-                                        .state
-                                        .where((answer) => answer.isCorrect)
-                                        .toList()
-                                        .length}',
+                                    '${context.read(userListAnswer).state.where((answer) => answer.isCorrect).toList().length}',
                                     style: TextStyle(fontSize: 36),
                                   ),
-                                ),), // správne
-                              Visibility(visible: (myNumberOfAllQuestions ==
-                                  myNumberOfEmptyQuestions ||
-                                  myNumberOfWrongQuestions == 0) ? false : true,
+                                ),
+                              ), // správne
+                              Visibility(
+                                visible: (myNumberOfAllQuestions ==
+                                            myNumberOfEmptyQuestions ||
+                                        myNumberOfWrongQuestions == 0)
+                                    ? false
+                                    : true,
                                 child: ListTile(
                                   leading: Card(
                                     shape: new BeveledRectangleBorder(
@@ -421,9 +410,11 @@ class _MyResultPageState extends State<MyResultPage> {
                                         side: BorderSide(
                                             color: Colors.black, width: 0.7)),
                                     color: Colors.redAccent.shade700,
-                                    child: SizedBox(width: 35,
+                                    child: SizedBox(
+                                      width: 35,
                                       height: 35,
-                                      child: Icon(Icons.close),),
+                                      child: Icon(Icons.close),
+                                    ),
                                   ),
                                   title: Text(
                                     'Nesprávne odpovede:',
@@ -434,10 +425,12 @@ class _MyResultPageState extends State<MyResultPage> {
                                     (myNumberOfWrongQuestions.toString()),
                                     style: TextStyle(fontSize: 36),
                                   ),
-                                ),), //nesprávne
-                              Visibility(visible: myNumberOfEmptyQuestions == 0
-                                  ? false
-                                  : true,
+                                ),
+                              ), //nesprávne
+                              Visibility(
+                                visible: myNumberOfEmptyQuestions == 0
+                                    ? false
+                                    : true,
                                 child: ListTile(
                                   leading: Card(
                                     shape: new BeveledRectangleBorder(
@@ -447,9 +440,11 @@ class _MyResultPageState extends State<MyResultPage> {
                                         side: BorderSide(
                                             color: Colors.black, width: 0.7)),
                                     color: Colors.white,
-                                    child: SizedBox(width: 35,
+                                    child: SizedBox(
+                                      width: 35,
                                       height: 35,
-                                      child: Icon(Icons.remove),),
+                                      child: Icon(Icons.remove),
+                                    ),
                                   ),
                                   title: Text(
                                     'Nevyplnené odpovede:',
@@ -457,16 +452,11 @@ class _MyResultPageState extends State<MyResultPage> {
                                     textAlign: TextAlign.left,
                                   ),
                                   trailing: Text(
-                                    '${context
-                                        .read(userListAnswer)
-                                        .state
-                                        .where((answer) =>
-                                    answer.answered.isEmpty)
-                                        .toList()
-                                        .length}',
+                                    '${context.read(userListAnswer).state.where((answer) => answer.answered.isEmpty).toList().length}',
                                     style: TextStyle(fontSize: 36),
                                   ),
-                                ),), //nevyplnené
+                                ),
+                              ), //nevyplnené
                             ],
                           )),
                       Padding(padding: EdgeInsets.only(top: 8)),
@@ -476,7 +466,18 @@ class _MyResultPageState extends State<MyResultPage> {
                           endIndent: 2,
                           indent: 2,
                           thickness: 2),
-                      Padding(padding: EdgeInsets.only(bottom: 8)),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 4, top: 4),
+                        child: Center(
+                            child: Text(
+                          "Kliknutím na otázku zobrazíš detaily",
+                          style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
                       GridView.count(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
@@ -507,8 +508,8 @@ class _MyResultPageState extends State<MyResultPage> {
                               color: question.value.answered.isEmpty
                                   ? Colors.white
                                   : question.value.isCorrect
-                                  ? Colors.greenAccent.shade700
-                                  : Colors.redAccent.shade700,
+                                      ? Colors.greenAccent.shade700
+                                      : Colors.redAccent.shade700,
                               //farba karty testu - farba karty kategorie
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -516,31 +517,30 @@ class _MyResultPageState extends State<MyResultPage> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      'č. ${question.key + 1}\n ${question.value
-                                          .answered}',
+                                      'č. ${question.key + 1}\n ${question.value.answered}',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: question.value.answered.isEmpty
                                             ? Colors.black
-                                            : Colors.white, fontSize: 19,),
+                                            : Colors.white,
+                                        fontSize: 19,
+                                      ),
                                     ),
                                   )
                                 ],
                               ),
                             ),
                             onTap: () async {
-                              var questionNV =
-                              await getQuestionById(question.value.questionId);
-                              context
-                                  .read(userViewQuestionState)
-                                  .state =
+                              var questionNV = await getQuestionById(
+                                  question.value.questionId);
+                              context.read(userViewQuestionState).state =
                                   questionNV;
                               var aA = question.value.answered;
-                              var questionNumber = (question.key + 1)
-                                  .toString();
+                              var questionNumber =
+                                  (question.key + 1).toString();
                               Navigator.pushNamed(context, "/questionDetail",
-                                  arguments:
-                                  AnswerAndQuestionNumber(questionNumber, aA));
+                                  arguments: AnswerAndQuestionNumber(
+                                      questionNumber, aA));
                             },
                           );
                         }).toList(),
@@ -550,7 +550,8 @@ class _MyResultPageState extends State<MyResultPage> {
                 ),
               ),
             ),
-          ),),
+          ),
+        ),
         onWillPop: () async {
           Navigator.pop(context);
           Navigator.pushNamed(context, "/homePage");
@@ -566,7 +567,14 @@ class _MyResultPageState extends State<MyResultPage> {
 
 Future<int> insertUserAnswer(UserAnswers ua) async {
   var db = await answersCopyDB();
-  return await db.insert('answers', {'date': ua.date, 'score': ua.score, 'wrongAnswers': ua.wrongAnswers,'correctAnswers': ua.correctAnswers,'emptyAnswers': ua.emptyAnswers,'allAnswers': ua.allAnswers,});
+  return await db.insert('answers', {
+    'date': ua.date,
+    'score': ua.score,
+    'wrongAnswers': ua.wrongAnswers,
+    'correctAnswers': ua.correctAnswers,
+    'emptyAnswers': ua.emptyAnswers,
+    'allAnswers': ua.allAnswers,
+  });
 }
 
 Future<int> insertUserAnswerDetail(UserAnswersDetail uad, int answers) async {
@@ -581,10 +589,16 @@ Future<int> insertUserAnswerDetail(UserAnswersDetail uad, int answers) async {
 
 void _insertUserAnswer(score, date, wrong, correct, empty, all) async {
   // row to insert
-  Map<String, dynamic> row = {answersDate: date, answersScore: score, answersWrong: wrong, answersCorrect: correct, answersEmpty: empty, answersAll: all};
+  Map<String, dynamic> row = {
+    answersDate: date,
+    answersScore: score,
+    answersWrong: wrong,
+    answersCorrect: correct,
+    answersEmpty: empty,
+    answersAll: all
+  };
   UserAnswers ua = UserAnswers.fromMap(row);
-  final id = await insertUserAnswer(
-      ua);
+  final id = await insertUserAnswer(ua);
   //print('_insertUserAnswer: inserted row id: $id');
 }
 

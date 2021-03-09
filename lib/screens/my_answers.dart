@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
-import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:letecky_testy/const/const.dart';
 import 'package:letecky_testy/database/db_helper.dart';
 import 'package:letecky_testy/database/question_provider.dart';
 import 'package:letecky_testy/database/useranswerdetail_provider.dart';
@@ -15,7 +13,6 @@ import 'package:letecky_testy/state/state_manager.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:share/share.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAnswersDetailPage extends StatefulWidget {
   MyAnswersDetailPage({Key key}) : super(key: key);
@@ -30,52 +27,6 @@ Future<List<UserAnswersDetail>> fetchUADetailsfromDB(int answers) async {
 }
 
 class _MyAnswersDetailPageState extends State<MyAnswersDetailPage> {
-  showAnswersTip(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isFirstTimeAnswersTipShown = prefs.getBool(showFirstTimeAnswersTip);
-    if (isFirstTimeAnswersTipShown == null) {
-      Flushbar(
-        flushbarPosition: FlushbarPosition.BOTTOM,
-        flushbarStyle: FlushbarStyle.FLOATING,
-        reverseAnimationCurve: Curves.decelerate,
-        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-        backgroundColor: Colors.black12,
-        blockBackgroundInteraction: true,
-        boxShadows: [
-          BoxShadow(
-              color: Colors.black87, offset: Offset(0.0, 2.0), blurRadius: 1.0)
-        ],
-        leftBarIndicatorColor: Colors.indigoAccent,
-        isDismissible: false,
-        duration: Duration(seconds: 60),
-        mainButton: OutlineButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            prefs.setBool(showFirstTimeAnswersTip, false);
-          },
-          child: Icon(
-            Icons.check_outlined,
-            size: 50,
-            color: ThemeData().accentColor,
-          ),
-          shape: new BeveledRectangleBorder(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10))),
-          borderSide: BorderSide(color: Colors.indigoAccent, width: 1.3),
-        ),
-        titleText: Text(
-          "Tip",
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
-        ),
-        messageText: Text(
-          "Kliknutím na odpoveď zobrazíš detail otázky.",
-          style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
-        ),
-      )..show(context);
-    }
-  }
   @override
   Widget build(BuildContext context) {
     final AnswerID args = ModalRoute.of(context).settings.arguments;
@@ -134,10 +85,6 @@ class _MyAnswersDetailPageState extends State<MyAnswersDetailPage> {
             future: fetchUADetailsfromDB(args.answerID),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                if (snapshot.data.length > 0) {
-                  Future.delayed(
-                      Duration.zero, () => showAnswersTip(context));
-                }
                 return new SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: SafeArea(
@@ -357,7 +304,18 @@ class _MyAnswersDetailPageState extends State<MyAnswersDetailPage> {
                             endIndent: 2,
                             indent: 2,
                             thickness: 2),
-                        Padding(padding: EdgeInsets.only(bottom: 8)),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 4, top: 4),
+                          child: Center(
+                              child: Text(
+                                "Kliknutím na otázku zobrazíš detaily",
+                                style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                                textAlign: TextAlign.center,
+                              )),
+                        ),
                         GridView.builder(
                           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 100,

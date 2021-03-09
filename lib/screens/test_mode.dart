@@ -8,7 +8,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:letecky_testy/database/db_helper.dart';
 import 'package:letecky_testy/database/question_provider.dart';
 import 'package:letecky_testy/model/user_answer_model.dart';
@@ -79,22 +78,13 @@ class _MyTestModePageState extends State<MyTestModePage>
                           child: Text('${snapshot.error}'),
                         );
                       else if (snapshot.hasData) {
-                        Future.delayed(
-                            Duration.zero,
-                                () => Fluttertoast.showToast(
-                                msg: "Tip: klikni na čas",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 17.0));
                         return Container(
                           margin: const EdgeInsets.all(0.2),
                           child: Card(
                             color: Colors.transparent,
                             elevation: 3,
                             shadowColor: Colors.black54,
-                            clipBehavior: Clip.antiAlias,
+                            clipBehavior: Clip.hardEdge,
                             shape: BeveledRectangleBorder(
                                 borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(10),
@@ -127,19 +117,152 @@ class _MyTestModePageState extends State<MyTestModePage>
               children: <Widget>[
                 OutlineButton(
                   onPressed: () {
-                    showCloseExamDialog();
+                    isAnswerSheetOpen = true;
+                    showDialog(
+                      context: context,
+                      useRootNavigator: false,
+                      barrierDismissible: false,
+                      barrierColor: Colors.black54,
+                      child: WillPopScope(
+                          child: Builder(
+                              builder: (_) => new AlertDialog(
+                                backgroundColor: Colors.indigo[500],
+                                shape: new BeveledRectangleBorder(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    side: BorderSide(
+                                        color: Colors.black, width: 1.3)),
+                                elevation: 5,
+                                title: Text('Zoznam odpovedí'),
+                                content: Container(
+                                    width:
+                                    MediaQuery.of(context).size.width,
+                                    child: GridView.count(
+                                      crossAxisCount: 3,
+                                      childAspectRatio: 1.4,
+                                      padding: const EdgeInsets.all(2.0),
+                                      mainAxisSpacing: 8.0,
+                                      crossAxisSpacing: 8.0,
+                                      children: context
+                                          .read(userListAnswer)
+                                          .state
+                                          .asMap()
+                                          .entries
+                                          .map((e) {
+                                        return GestureDetector(
+                                          child: Card(
+                                            shape: new BeveledRectangleBorder(
+                                                borderRadius:
+                                                const BorderRadius.only(
+                                                    topLeft:
+                                                    Radius.circular(
+                                                        10),
+                                                    bottomRight:
+                                                    Radius.circular(
+                                                        10)),
+                                                side: BorderSide(
+                                                    color:
+                                                    Colors.indigoAccent,
+                                                    width: 1.3)),
+                                            elevation: 2,
+                                            color:
+                                            (e.value.answered != null &&
+                                                e.value.answered
+                                                    .isNotEmpty)
+                                                ? Colors.indigoAccent
+                                                : Colors.transparent,
+                                            //farba karty testu - farba karty kategorie
+                                            child: Row(
+                                              verticalDirection:
+                                              VerticalDirection.down,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Center(
+                                                  child: AutoSizeText(
+                                                    '${e.key + 1}. ',
+                                                    textAlign:
+                                                    TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.w300,
+                                                        fontSize: 25),
+                                                  ),
+                                                ),
+                                                Center(
+                                                  child: AutoSizeText(
+                                                    '${e.value.answered == null || e.value.answered.isEmpty ? '' : e.value.answered}',
+                                                    textAlign:
+                                                    TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 25),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                            carouselController
+                                                .animateToPage(e.key);
+                                          },
+                                        );
+                                      }).toList(),
+                                    )),
+                                actions: [
+                                  OutlineButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pop(); // zatvoriť dialogove okno
+                                      isAnswerSheetOpen = false;
+                                    },
+                                    label: Text(
+                                      'Zatvoriť',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: ThemeData().accentColor),
+                                    ),
+                                    icon: Icon(
+                                      Icons.close_outlined,
+                                      color: ThemeData().accentColor,
+                                      size: 20,
+                                    ),
+                                    shape: new BeveledRectangleBorder(
+                                        borderRadius:
+                                        const BorderRadius.only(
+                                            topLeft:
+                                            Radius.circular(10),
+                                            bottomRight:
+                                            Radius.circular(10))),
+                                    borderSide: BorderSide(
+                                        color: Colors.indigoAccent,
+                                        width: 1.3),
+                                  ),
+                                ],
+                              )),
+                          onWillPop: () async {
+                            isAnswerSheetOpen = false;
+                            return true;
+                          }),
+                    );
                   },
-                  child: Icon(Icons.close, size: 30),
+                  child: Icon(Icons.grid_view, size: 30),
                   shape: new BeveledRectangleBorder(
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10))),
                   borderSide:
-                      BorderSide(color: Colors.indigoAccent, width: 1.2),
+                  BorderSide(color: Colors.indigoAccent, width: 1.2),
                 ),
                 OutlineButton(
                   onPressed: () {
-                    showFinishDialog();
+                    return false;
                   },
                   child: CountdownFormatted(
                     duration: _duration,
@@ -229,7 +352,7 @@ class _MyTestModePageState extends State<MyTestModePage>
                       return AutoSizeText(
                         remaining,
                         style: TextStyle(
-                          fontSize: isTimeNearEnd ? 28 : 25,
+                          fontSize: isTimeNearEnd ? 30 : 28,
                           fontWeight: FontWeight.w900,
                           letterSpacing: -0.12,
                           color: isTimeNearEnd ? endTime : Colors.white,
@@ -247,151 +370,18 @@ class _MyTestModePageState extends State<MyTestModePage>
                   borderSide: BorderSide(
                       color: Colors.indigoAccent, width: 1.8),
                 ),
-                OutlineButton(
+                FlatButton(
+                  color: Colors.green,
                   onPressed: () {
-                    isAnswerSheetOpen = true;
-                    showDialog(
-                      context: context,
-                      useRootNavigator: false,
-                      barrierDismissible: false,
-                      barrierColor: Colors.black54,
-                      child: WillPopScope(
-                          child: Builder(
-                              builder: (_) => new AlertDialog(
-                                backgroundColor: Colors.indigo[500],
-                                    shape: new BeveledRectangleBorder(
-                                        borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                        side: BorderSide(
-                                            color: Colors.black, width: 1.3)),
-                                    elevation: 5,
-                                    title: Text('Zoznam odpovedí'),
-                                    content: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: GridView.count(
-                                          crossAxisCount: 3,
-                                          childAspectRatio: 1.4,
-                                          padding: const EdgeInsets.all(2.0),
-                                          mainAxisSpacing: 8.0,
-                                          crossAxisSpacing: 8.0,
-                                          children: context
-                                              .read(userListAnswer)
-                                              .state
-                                              .asMap()
-                                              .entries
-                                              .map((e) {
-                                            return GestureDetector(
-                                              child: Card(
-                                                shape: new BeveledRectangleBorder(
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    10),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    10)),
-                                                    side: BorderSide(
-                                                        color:
-                                                            Colors.indigoAccent,
-                                                        width: 1.3)),
-                                                elevation: 2,
-                                                color:
-                                                    (e.value.answered != null &&
-                                                            e.value.answered
-                                                                .isNotEmpty)
-                                                        ? Colors.indigoAccent
-                                                        : Colors.transparent,
-                                                //farba karty testu - farba karty kategorie
-                                                child: Row(
-                                                  verticalDirection:
-                                                      VerticalDirection.down,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Center(
-                                                      child: AutoSizeText(
-                                                        '${e.key + 1}. ',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w300,
-                                                            fontSize: 25),
-                                                      ),
-                                                    ),
-                                                    Center(
-                                                      child: AutoSizeText(
-                                                        '${e.value.answered == null || e.value.answered.isEmpty ? '' : e.value.answered}',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 25),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                Navigator.of(context).pop();
-                                                carouselController
-                                                    .animateToPage(e.key);
-                                              },
-                                            );
-                                          }).toList(),
-                                        )),
-                                    actions: [
-                                      OutlineButton.icon(
-                                        onPressed: () {
-                                          Navigator.of(context)
-                                              .pop(); // zatvoriť dialogove okno
-                                          isAnswerSheetOpen = false;
-                                        },
-                                        label: Text(
-                                          'Zatvoriť',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              color: ThemeData().accentColor),
-                                        ),
-                                        icon: Icon(
-                                          Icons.close_outlined,
-                                          color: ThemeData().accentColor,
-                                          size: 20,
-                                        ),
-                                        shape: new BeveledRectangleBorder(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(10),
-                                                    bottomRight:
-                                                        Radius.circular(10))),
-                                        borderSide: BorderSide(
-                                            color: Colors.indigoAccent,
-                                            width: 1.3),
-                                      ),
-                                    ],
-                                  )),
-                          onWillPop: () async {
-                            isAnswerSheetOpen = false;
-                            return true;
-                          }),
-                    );
+                    showFinishDialog();
                   },
-                  child: Icon(Icons.grid_view, size: 30),
+                  child: Icon(Icons.send, size: 32, color: Colors.white,),
                   shape: new BeveledRectangleBorder(
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
-                  borderSide:
-                      BorderSide(color: Colors.indigoAccent, width: 1.2),
+                          bottomRight: Radius.circular(10)), side: BorderSide(color: Colors.black, width: 0.6),),
                 ),
+
               ],
             ),
           ),),

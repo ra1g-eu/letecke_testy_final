@@ -751,7 +751,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
               if (multipleCategories.length > 2 ||
                   multipleCategories.length < 1)
                 return showConfirmationFlushBar(context, "Chyba",
-                    "Vybrať si môžeš 1 alebo 2 kategórie.", 1700, false);
+                    "Vybrať si môžeš maximálne 2 kategórie.", 1700, false);
               if (multipleCategories.length > 1 &&
                   (multipleCategories.first == 10 ||
                       multipleCategories.last == 10))
@@ -761,9 +761,6 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                     "Všetky kategórie môžeš vybrať len samostatne.",
                     1700,
                     false);
-
-              print(
-                  'spustit skusku ${multipleCategories.length} $multipleCategories');
               userCategoryID = multipleCategories;
               userSelectedTestTime = tagTime == 0
                   ? ((numberOfQ * 1.2) * 60)
@@ -894,7 +891,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      'Môžeš si vytvoriť vlastnú skúšku (potiahnutím doľava alebo kliknutím sem), kde si vyberieš kategóriu, počet otázok a čas.',
+                                      'Môžeš si vytvoriť vlastnú skúšku (potiahnutím doľava alebo kliknutím sem), kde si vyberieš kategórie, počet otázok a čas.',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -960,7 +957,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      'Predtým ako začneš skúšku si môžeš precvičiť svoje vedomosti zo všetkých dostupných kategórií kliknutím sem alebo potiahnutím doprava.',
+                                      'Predtým ako začneš skúšku na ostro, si môžeš precvičiť svoje vedomosti zo všetkých dostupných kategórií (potiahnutím doprava alebo kliknutím sem).',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -1188,7 +1185,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                   ),
                   StoryItem.text(
                     title:
-                        "\u2022 získaš nové ale aj si precvičíš staré vedomosti o lietaní súkromnými lietadlami",
+                        "\u2022 získaš nové a precvičíš si vedomosti o lietaní súkromnými lietadlami",
                     backgroundColor: Colors.lightBlue.shade400,
                     roundedTop: false,
                     textStyle: TextStyle(
@@ -1199,7 +1196,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                   ),
                   StoryItem.text(
                     title:
-                        "\u2022 zlepšíš si svoje navigačné schopnosti pri zlých podmienkach",
+                        "\u2022 zlepšíš si svoje navigačné schopnosti",
                     backgroundColor: Colors.lightBlue.shade500,
                     roundedTop: false,
                     textStyle: TextStyle(
@@ -1210,7 +1207,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                   ),
                   StoryItem.text(
                     title:
-                        "\u2022 budeš vedieť ako a kedy komunikovať s ostatnými na oblohe",
+                        "\u2022 budeš vedieť ako komunikovať s ostatnými na oblohe",
                     backgroundColor: Colors.lightBlue.shade600,
                     roundedTop: false,
                     textStyle: TextStyle(
@@ -1221,7 +1218,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                   ),
                   StoryItem.text(
                     title:
-                        "\u2022 získaš lepší prehľad o tom, ako sa zachovať, keď sa zhorší počasie",
+                        "\u2022 získaš lepší prehľad o leteckej meteorológií",
                     backgroundColor: Colors.lightBlue.shade700,
                     roundedTop: false,
                     textStyle: TextStyle(
@@ -1232,7 +1229,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                   ),
                   StoryItem.text(
                     title:
-                        "\u2022 základy letu a aerodynamika ťa už nikdy nezaskočia nepripraveného",
+                        "\u2022 plánovanie letov ťa už nikdy nezaskočí",
                     backgroundColor: Colors.lightBlue.shade800,
                     roundedTop: false,
                     textStyle: TextStyle(

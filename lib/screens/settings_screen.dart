@@ -155,8 +155,6 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                   prefs.setBool('is_first_loaded', null);
                                   prefs.setBool('show_home_page_tip', null);
                                   prefs.setBool(
-                                      'show_first_time_answers_tip', null);
-                                  prefs.setBool(
                                       'show_first_time_tests_tip', null);
                                   prefs.setBool(
                                       'show_first_time_question_detail_tip',
@@ -189,8 +187,6 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                       await SharedPreferences.getInstance();
                                   prefs.setBool('is_first_loaded', false);
                                   prefs.setBool('show_home_page_tip', false);
-                                  prefs.setBool(
-                                      'show_first_time_answers_tip', false);
                                   prefs.setBool(
                                       'show_first_time_tests_tip', false);
                                   prefs.setBool(

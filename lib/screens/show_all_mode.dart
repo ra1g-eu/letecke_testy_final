@@ -81,9 +81,8 @@ class _MyShowAllModePageState extends State<MyShowAllModePage> {
                                   shape: new BeveledRectangleBorder(
                                       borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                      side: BorderSide(color: Colors.indigo[900], width: 1.5)),
-                                  shadowColor: Colors.black,
+                                          bottomRight: Radius.circular(10))),
+                                  shadowColor: Colors.black54,
                                   clipBehavior: Clip.hardEdge,
                                   margin: const EdgeInsets.all(4),
                                   child: QuestionBody(

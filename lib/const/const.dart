@@ -1,7 +1,6 @@
 //Shared prefs keys
 final keyIsFirstLoaded = 'is_first_loaded';
 final showHomePageTip = 'show_home_page_tip';
-final showFirstTimeAnswersTip = 'show_first_time_answers_tip';
 final showFirstTimeTestsTip = 'show_first_time_tests_tip';
 final showFirstTimeQuestionDetailTip = 'show_first_time_question_detail_tip';
 
