@@ -264,9 +264,10 @@ class ChangelogsList extends StatelessWidget {
                 buttonHeight: 52.0,
                 buttonMinWidth: 90.0,
                 children: <Widget>[
-                  FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.0)),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.white, // foreground
+                    ),
                     onPressed: () async {
                       var url;
                       if(changelog[index].verzia.contains("najnovšia", 4)){
@@ -290,9 +291,10 @@ class ChangelogsList extends StatelessWidget {
                       ],
                     ),
                   ),
-                  FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.0)),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.white, // foreground
+                    ),
                     onPressed: () async {
                       var url;
                       if(changelog[index].verzia.contains("najnovšia", 4)){

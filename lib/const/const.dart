@@ -2,15 +2,12 @@
 final keyIsFirstLoaded = 'is_first_loaded';
 final showHomePageTip = 'show_home_page_tip';
 final showFirstTimeTestsTip = 'show_first_time_tests_tip';
-
+final deleteDbAtStart = 'delete_db_at_start';
 final statusBarC = 'status_bar_color';
 final navBarC = 'nav_bar_color';
 final navBarB = 'nav_bar_brightness';
 final statusBIB = 'status_bar_icon_brightness';
 final statusBTB = 'status_bar_text_brightness';
-
-final deleteDbAtStart = 'delete_db_at_start';
-
 
 final db_name = "lt_database_20.db";
 final answers_db = "user_answers_4.db";

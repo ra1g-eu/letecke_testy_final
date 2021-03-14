@@ -41,7 +41,7 @@ void deleteAllUserAnswersAndDetails() async {
 }
 
 class _MyTestsPageState extends State<MyTestsPage> {
-bool _isDel;
+bool _isDel = false;
   @override
   void initState() {
     _isDel = false;
@@ -66,7 +66,7 @@ bool _isDel;
         leftBarIndicatorColor: Colors.indigoAccent,
         isDismissible: false,
         duration: Duration(seconds: 60),
-        mainButton: OutlineButton(
+        mainButton: OutlinedButton(
           onPressed: () {
             Navigator.of(context).pop();
             prefs.setBool(showFirstTimeTestsTip, false);
@@ -76,11 +76,12 @@ bool _isDel;
             size: 50,
             color: ThemeData().accentColor,
           ),
-          shape: new BeveledRectangleBorder(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10))),
-          borderSide: BorderSide(color: Colors.indigoAccent, width: 1.3),
+          style: OutlinedButton.styleFrom(
+              shape: new BeveledRectangleBorder(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10))),
+              side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
         ),
         titleText: Text(
           "Tip",
@@ -143,7 +144,7 @@ bool _isDel;
                           content: Text(
                               'Naozaj chceš vymazať všetky skúšky? Táto akcia je nenávratná!'),
                           actions: [
-                            OutlineButton(
+                            OutlinedButton(
                                 onPressed: () {
                                   Navigator.of(context)
                                       .pop(); // zatvoriť dialogove okno
@@ -154,11 +155,13 @@ bool _isDel;
                                       fontSize: 25,
                                       fontWeight: FontWeight.normal),
                                 ),
-                                shape: new BeveledRectangleBorder(
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)))),
-                            OutlineButton(
+                              style: OutlinedButton.styleFrom(
+                                  shape: new BeveledRectangleBorder(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)))),
+                            ),
+                            OutlinedButton(
                               onPressed: () {
                                 deleteAllUserAnswersAndDetails();
                                 Navigator.of(context).pop();
@@ -173,12 +176,12 @@ bool _isDel;
                                     fontWeight: FontWeight.bold,
                                     color: ThemeData().accentColor),
                               ),
-                              shape: new BeveledRectangleBorder(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10))),
-                              borderSide: BorderSide(
-                                  color: Colors.indigoAccent, width: 1.3),
+                              style: OutlinedButton.styleFrom(
+                                  shape: new BeveledRectangleBorder(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10))),
+                                  side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                             ),
                           ],
                         ));
@@ -337,9 +340,10 @@ bool _isDel;
                             buttonHeight: 52.0,
                             buttonMinWidth: 90.0,
                             children: <Widget>[
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white, // foreground
+                                ),
                                 onPressed: () {
                                   Navigator.pushNamed(context, "/myAnswers",
                                       arguments: AnswerID(
@@ -362,9 +366,10 @@ bool _isDel;
                                   ],
                                 ),
                               ),
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.red, // foreground
+                                ),
                                 onPressed: () {
                                   Flushbar(
                                     flushbarPosition: FlushbarPosition.BOTTOM,
@@ -385,7 +390,7 @@ bool _isDel;
                                     dismissDirection:
                                         FlushbarDismissDirection.HORIZONTAL,
                                     duration: Duration(seconds: 3),
-                                    mainButton: OutlineButton(
+                                    mainButton: OutlinedButton(
                                       onPressed: () {
                                         setState(() {
                                           _isDel = true;
@@ -402,14 +407,12 @@ bool _isDel;
                                         size: 50,
                                         color: ThemeData().accentColor,
                                       ),
-                                      shape: new BeveledRectangleBorder(
-                                          borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              bottomRight:
-                                                  Radius.circular(10))),
-                                      borderSide: BorderSide(
-                                          color: Colors.indigoAccent,
-                                          width: 1.3),
+                                      style: OutlinedButton.styleFrom(
+                                          shape: new BeveledRectangleBorder(
+                                              borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(10),
+                                                  bottomRight: Radius.circular(10))),
+                                          side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                                     ),
                                     titleText: Text(
                                       "Vymazanie",

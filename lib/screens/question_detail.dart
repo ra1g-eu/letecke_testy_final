@@ -211,7 +211,7 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                                   ),
                                 ),
                                 actions: [
-                                  OutlineButton(
+                                  OutlinedButton(
                                     onPressed: () async {
                                       String messageMail;
                                       messageMail = await sendEmail(
@@ -231,13 +231,12 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                                           false);
                                       myController.clear();
                                     },
-                                    shape: new BeveledRectangleBorder(
-                                        borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                        side: BorderSide(
-                                            color: Colors.indigoAccent,
-                                            width: 1.3)),
+                                    style: OutlinedButton.styleFrom(
+                                        shape: new BeveledRectangleBorder(
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                bottomRight: Radius.circular(10))),
+                                        side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                                     child: Text(
                                       'Nahlásiť chybu',
                                       style: TextStyle(

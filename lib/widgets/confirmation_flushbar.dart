@@ -18,7 +18,7 @@ showConfirmationFlushBar(BuildContext context, String title, String messageBody,
     isDismissible: true,
     dismissDirection: FlushbarDismissDirection.HORIZONTAL,
     duration: Duration(milliseconds: milliseconds == null ? 60000 : milliseconds),
-    mainButton: showButton == false ? null : OutlineButton(
+    mainButton: showButton == false ? null : OutlinedButton(
       onPressed: () {
         Navigator.pop(context);
       },
@@ -27,11 +27,12 @@ showConfirmationFlushBar(BuildContext context, String title, String messageBody,
         size: 50,
         color: ThemeData().accentColor,
       ),
+      style: OutlinedButton.styleFrom(
       shape: new BeveledRectangleBorder(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               bottomRight: Radius.circular(10))),
-      borderSide: BorderSide(color: Colors.indigoAccent, width: 1.3),
+      side: BorderSide(color: Colors.indigoAccent, width: 1.3),),
     ),
     titleText: Text(
       title,

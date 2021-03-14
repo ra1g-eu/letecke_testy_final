@@ -26,8 +26,8 @@ class _MyReadModePageState extends State<MyReadModePage> {
   SharedPreferences prefs;
   int indexPage = 0;
   CarouselController buttonCarouselController = CarouselController();
-  List<UserAnswer> userAnswers = new List<UserAnswer>();
-  List<UserCategory> userCategory = new List<UserCategory>();
+  List<UserAnswer> userAnswers = <UserAnswer>[];
+  List<UserCategory> userCategory = <UserCategory>[];
 
   @override
   void initState() {
@@ -132,154 +132,150 @@ class _MyReadModePageState extends State<MyReadModePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                OutlineButton(
+                OutlinedButton(
                   onPressed: () => showAnswer(context),
                   child: AutoSizeText('Ukáž správnu odpoveď',
                       style: TextStyle(fontSize: 19, color: Colors.white)),
-                  shape: new BeveledRectangleBorder(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
-                  borderSide:
-                  BorderSide(color: Colors.indigoAccent, width: 1.3),
+                  style: OutlinedButton.styleFrom(
+                      shape: new BeveledRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10))),
+                      side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                 ),
-                  OutlineButton(
+                  OutlinedButton(
                     onPressed: () {
                       showDialog(
                         context: context,
                         useRootNavigator: false,
                         barrierDismissible: false,
                         barrierColor: Colors.black54,
-                        child: WillPopScope(
-                            child: Builder(
-                                builder: (_) => new AlertDialog(
-                                  backgroundColor: Colors.indigo[500],
-                                  shape: new BeveledRectangleBorder(
-                                      borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                      side: BorderSide(
-                                          color: Colors.black, width: 1.3)),
-                                  elevation: 5,
-                                  title: Text('${questionModule.name}'),
-                                  content: Container(
-                                      width:
-                                      MediaQuery.of(context).size.width,
-                                      child: GridView.count(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 1.7,
-                                        padding: const EdgeInsets.all(2.0),
-                                        mainAxisSpacing: 8.0,
-                                        crossAxisSpacing: 8.0,
-                                        children: context
-                                            .read(userListQuestion)
-                                            .state
-                                            .asMap()
-                                            .entries
-                                            .map((e) {
-                                          return GestureDetector(
-                                            child: Card(
-                                              shape: new BeveledRectangleBorder(
-                                                  borderRadius:
-                                                  const BorderRadius.only(
-                                                      topLeft:
-                                                      Radius.circular(
-                                                          10),
-                                                      bottomRight:
-                                                      Radius.circular(
-                                                          10)),
-                                                  side: BorderSide(
-                                                      color:
-                                                      Colors.indigoAccent,
-                                                      width: 1.3)),
-                                              elevation: 2,
-                                              color: Colors.transparent,
-                                              //farba karty testu - farba karty kategorie
-                                              child: Column(
-                                                verticalDirection:
-                                                VerticalDirection.down,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                                children: [
-                                                  Center(
-                                                    child: AutoSizeText(
-                                                      'otázka',
-                                                      textAlign:
-                                                      TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.w300,
-                                                          fontSize: 22),
-                                                    ),
-                                                  ),
-                                                  Center(
-                                                    child: AutoSizeText(
-                                                      '${e.value.questionId}',
-                                                      textAlign:
-                                                      TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.w300,
-                                                          fontSize: 22),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            onTap: () {
-                                              Navigator.of(context).pop();
-                                              buttonCarouselController
-                                                  .animateToPage(e.key);
-                                            },
-                                          );
-                                        }).toList(),
-                                      )),
-                                  actions: [
-                                    OutlineButton.icon(
-                                      onPressed: () {
-                                        Navigator.of(context)
-                                            .pop();
-                                      },
-                                      label: Text(
-                                        'Zatvoriť',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: ThemeData().accentColor),
-                                      ),
-                                      icon: Icon(
-                                        Icons.close_outlined,
-                                        color: ThemeData().accentColor,
-                                        size: 20,
-                                      ),
+                        builder: (_) => new WillPopScope(
+                            onWillPop: () async {
+                              return true;
+                            }, child: new AlertDialog(
+                          backgroundColor: Colors.indigo[500],
+                          shape: new BeveledRectangleBorder(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)),
+                              side: BorderSide(
+                                  color: Colors.black, width: 1.3)),
+                          elevation: 5,
+                          title: Text('${questionModule.name}'),
+                          content: Container(
+                              width:
+                              MediaQuery.of(context).size.width,
+                              child: GridView.count(
+                                crossAxisCount: 2,
+                                childAspectRatio: 1.7,
+                                padding: const EdgeInsets.all(2.0),
+                                mainAxisSpacing: 8.0,
+                                crossAxisSpacing: 8.0,
+                                children: context
+                                    .read(userListQuestion)
+                                    .state
+                                    .asMap()
+                                    .entries
+                                    .map((e) {
+                                  return GestureDetector(
+                                    child: Card(
                                       shape: new BeveledRectangleBorder(
                                           borderRadius:
                                           const BorderRadius.only(
                                               topLeft:
-                                              Radius.circular(10),
+                                              Radius.circular(
+                                                  10),
                                               bottomRight:
-                                              Radius.circular(10))),
-                                      borderSide: BorderSide(
-                                          color: Colors.indigoAccent,
-                                          width: 1.3),
+                                              Radius.circular(
+                                                  10)),
+                                          side: BorderSide(
+                                              color:
+                                              Colors.indigoAccent,
+                                              width: 1.3)),
+                                      elevation: 2,
+                                      color: Colors.transparent,
+                                      //farba karty testu - farba karty kategorie
+                                      child: Column(
+                                        verticalDirection:
+                                        VerticalDirection.down,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        children: [
+                                          Center(
+                                            child: AutoSizeText(
+                                              'otázka',
+                                              textAlign:
+                                              TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w300,
+                                                  fontSize: 22),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: AutoSizeText(
+                                              '${e.value.questionId}',
+                                              textAlign:
+                                              TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w300,
+                                                  fontSize: 22),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ],
-                                )),
-                            onWillPop: () async {
-                              return true;
-                            }),
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                      buttonCarouselController
+                                          .animateToPage(e.key);
+                                    },
+                                  );
+                                }).toList(),
+                              )),
+                          actions: [
+                            OutlinedButton.icon(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pop();
+                              },
+                              label: Text(
+                                'Zatvoriť',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: ThemeData().accentColor),
+                              ),
+                              icon: Icon(
+                                Icons.close_outlined,
+                                color: ThemeData().accentColor,
+                                size: 20,
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                  shape: new BeveledRectangleBorder(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10))),
+                                  side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
+                            ),
+                          ],
+                        ),
+                        ),
                       );
                     },
                   child: AutoSizeText('Otázky',
                       style: TextStyle(fontSize: 19, color: Colors.white)),
-                  shape: new BeveledRectangleBorder(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
-                  borderSide:
-                  BorderSide(color: Colors.indigoAccent, width: 1.2),
+                    style: OutlinedButton.styleFrom(
+                      shape: new BeveledRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10))),
+                      side: BorderSide(color: Colors.indigoAccent, width: 1.2),
+                    ),
                   ),
               ],)
         ),),
@@ -299,7 +295,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
               title: Text('Zatvoriť'),
               content: Text('Chceš uložiť aktuálnu otázku?'),
               actions: [
-                OutlineButton(
+                OutlinedButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // zatvoriť dialogove okno
                     Navigator.pop(context);
@@ -309,13 +305,13 @@ class _MyReadModePageState extends State<MyReadModePage> {
                     style:
                         TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
                   ),
-                  shape: new BeveledRectangleBorder(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
-                  color: Colors.indigoAccent,
+                  style: OutlinedButton.styleFrom(
+                      shape: new BeveledRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10)))),
                 ),
-                OutlineButton(
+                OutlinedButton(
                   onPressed: () {
                     prefs.setInt(
                         '${context.read(questionCategoryState).state.name}_${context.read(questionCategoryState).state.ID}',
@@ -330,13 +326,12 @@ class _MyReadModePageState extends State<MyReadModePage> {
                         fontWeight: FontWeight.bold,
                         color: ThemeData().accentColor),
                   ),
-                  shape: new BeveledRectangleBorder(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
-                  borderSide:
-                      BorderSide(color: Colors.indigoAccent, width: 1.3),
-                  color: Colors.indigoAccent,
+                  style: OutlinedButton.styleFrom(
+                      shape: new BeveledRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10))),
+                      side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                 ),
               ],
             ));

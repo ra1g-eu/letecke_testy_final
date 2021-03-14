@@ -146,9 +146,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                             buttonHeight: 52.0,
                             buttonMinWidth: 90.0,
                             children: <Widget>[
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white, // foreground
+                                ),
                                 onPressed: () async {
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
@@ -176,9 +177,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                   ],
                                 ),
                               ),
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white, // foreground
+                                ),
                                 onPressed: () async {
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
@@ -254,9 +256,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                             buttonHeight: 52.0,
                             buttonMinWidth: 90.0,
                             children: <Widget>[
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white, // foreground
+                                ),
                                 onPressed: () {
                                   showDialog(
                                     barrierColor: Colors.black54,
@@ -268,7 +271,7 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                             content:
                                                 Text('Vymazať všetky skúšky?'),
                                             actions: [
-                                              OutlineButton(
+                                              OutlinedButton(
                                                 onPressed: () {
                                                   Navigator.of(context).pop();
                                                 },
@@ -279,18 +282,14 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                                       fontWeight:
                                                           FontWeight.normal),
                                                 ),
-                                                shape: new BeveledRectangleBorder(
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    10),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    10))),
-                                                color: Colors.indigoAccent,
+                                                style: OutlinedButton.styleFrom(
+                                                    shape: new BeveledRectangleBorder(
+                                                        borderRadius: const BorderRadius.only(
+                                                            topLeft: Radius.circular(10),
+                                                            bottomRight: Radius.circular(10))),
+                                                    side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                                               ),
-                                              OutlineButton(
+                                              OutlinedButton(
                                                 onPressed: () async {
                                                   deleteAllUserAnswersAndDetails();
                                                   isDeleteFromDb = true;
@@ -311,19 +310,12 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                                       color: ThemeData()
                                                           .accentColor),
                                                 ),
-                                                shape: new BeveledRectangleBorder(
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    10),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    10))),
-                                                borderSide: BorderSide(
-                                                    color: Colors.indigoAccent,
-                                                    width: 1.3),
-                                                color: Colors.indigoAccent,
+                                                style: OutlinedButton.styleFrom(
+                                                    shape: new BeveledRectangleBorder(
+                                                        borderRadius: const BorderRadius.only(
+                                                            topLeft: Radius.circular(10),
+                                                            bottomRight: Radius.circular(10))),
+                                                    side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                                               ),
                                             ],
                                           ));
@@ -393,9 +385,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                             buttonHeight: 52.0,
                             buttonMinWidth: 90.0,
                             children: <Widget>[
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white, // foreground
+                                ),
                                 onPressed: () async {
                                   Color nBColor = await getNBCfromPrefs();
                                   Color sBColor = await getSBCfromPrefs();
@@ -435,9 +428,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                                         'Farba stavovej lišty',
                                                         style: TextStyle(
                                                             fontSize: 20.0))),
-                                                FlatButton(
-                                                  color: sBColor,
-                                                  textColor: Colors.black,
+                                                TextButton(
+                                                  style: TextButton.styleFrom(
+                                                      backgroundColor: sBColor, textStyle: TextStyle(color: Colors.black, fontSize: 18),primary: Colors.black // foreground
+                                                  ),
                                                   child: Text('Vyber farbu'),
                                                   onPressed: () =>
                                                       showDialog<void>(
@@ -476,9 +470,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                                         'Farba navigácie',
                                                         style: TextStyle(
                                                             fontSize: 20.0))),
-                                                FlatButton(
-                                                  color: nBColor,
-                                                  textColor: Colors.black,
+                                                TextButton(
+                                                  style: TextButton.styleFrom(
+                                                    backgroundColor: nBColor, textStyle: TextStyle(color: Colors.black, fontSize: 18),primary: Colors.black  // foreground
+                                                  ),
                                                   child: Text('Vyber farbu'),
                                                   onPressed: () =>
                                                       showDialog<void>(
@@ -746,7 +741,7 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                             ),
                                           ),
                                           actions: [
-                                            OutlineButton(
+                                            OutlinedButton(
                                               onPressed: () async {
                                                 statusBarIconBrightness == 0
                                                     ? statusBarIconSelected =
@@ -809,18 +804,12 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                                     color: ThemeData()
                                                         .accentColor),
                                               ),
-                                              shape: new BeveledRectangleBorder(
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10))),
-                                              borderSide: BorderSide(
-                                                  color: Colors.indigoAccent,
-                                                  width: 1.3),
+                                              style: OutlinedButton.styleFrom(
+                                                  shape: new BeveledRectangleBorder(
+                                                      borderRadius: const BorderRadius.only(
+                                                          topLeft: Radius.circular(10),
+                                                          bottomRight: Radius.circular(10))),
+                                                  side: BorderSide(color: Colors.indigoAccent, width: 1.3)),
                                             ),
                                           ],
                                         );
@@ -845,9 +834,10 @@ class _MySettingsPageState extends State<MySettingsPage> {
                                   ],
                                 ),
                               ),
-                              FlatButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0)),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white, // foreground
+                                ),
                                 onPressed: () async {
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();

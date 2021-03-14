@@ -11,6 +11,6 @@ final currentReadPage = StateProvider((ref) => 0);
 final userAnswerSelected = StateProvider((ref) => new UserAnswer());
 final isEnableShowAnswer = StateProvider((ref) => false);
 final isReadMode = StateProvider((ref) => false);
-final userListAnswer = StateProvider((ref) => List<UserAnswer>());
+final userListAnswer = StateProvider((ref) => <UserAnswer>[]);
 final userViewQuestionState = StateProvider((ref) => new Question());
-final userListQuestion = StateProvider((ref) => List<UserCategory>());
+final userListQuestion = StateProvider((ref) => <UserCategory>[]);

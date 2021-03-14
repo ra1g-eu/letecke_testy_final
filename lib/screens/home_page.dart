@@ -373,7 +373,7 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                       ),
                     ),
                     actions: [
-                      OutlineButton(
+                      OutlinedButton(
                         onPressed: () async {
                           String messageMail;
                           messageMail = await sendEmail(myController.text);
@@ -383,13 +383,12 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                           Future.delayed(
                               Duration.zero, () => myController.clear());
                         },
-                        shape: new BeveledRectangleBorder(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10)),
-                        ),
-                        borderSide:
-                            BorderSide(color: Colors.white38, width: 1.3),
+                        style: OutlinedButton.styleFrom(
+                            shape: new BeveledRectangleBorder(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10))),
+                            side: BorderSide(color: Colors.white38, width: 1.3)),
                         child: Text(
                           'Nahlásiť chybu',
                           style: TextStyle(
