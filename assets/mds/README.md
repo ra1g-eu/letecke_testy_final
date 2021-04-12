@@ -7,7 +7,8 @@ Oficiálna stránka: [klikni sem](https://lt.ra1g.eu)
 Aplikácia obsahuje oficiálne kategórie na testovanie, otázky & odpovede, zoznam už dokončených skúšok a iné:
 
 - 9 oficiálnych kategórií
-- každá kategória má minimálne 60 otázok
+- každá kategória má minimálne 40 otázok
+- dokopy 900+ otázok
 - mód "Skúška", kde si používateľ vyberie kategórie, počet otázok a čas
 - mód "Precvičovanie", kde používateľ vidí správne odpovede a precvičí si otázky na skúšku
 - mód "Preskúmanie otázok", kde sú zobrazené všetky otázky v databáze

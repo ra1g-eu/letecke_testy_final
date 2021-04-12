@@ -9,8 +9,8 @@ final navBarB = 'nav_bar_brightness';
 final statusBIB = 'status_bar_icon_brightness';
 final statusBTB = 'status_bar_text_brightness';
 
-final db_name = "lt_database_20.db";
-final answers_db = "user_answers_4.db";
+final db_name = "lt_database_final.db";
+final answers_db = "user_answers_final.db";
 
 final columnMainCategoryId="ID";
 final columnCategoryName = "Name";

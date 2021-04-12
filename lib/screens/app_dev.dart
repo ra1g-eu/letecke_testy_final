@@ -20,8 +20,6 @@ Future<List<Changelog>> fetchChangelog(http.Client client) async {
     print('Request failed with status: ${response.statusCode}.');
   }
 }
-
-// A function that converts a response body into a List<Photo>.
 List<Changelog> parseChangelog(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
   return parsed.map<Changelog>((json) => Changelog.fromJson(json)).toList();

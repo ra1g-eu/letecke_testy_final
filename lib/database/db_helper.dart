@@ -48,9 +48,10 @@ Future<Database> answersCopyDB() async {
 Future<List<UserAnswers>> getUA() async {
   var dbClient = await answersCopyDB();
   List<Map> list = await dbClient.rawQuery('SELECT * FROM answers WHERE is_hidden="no" ORDER BY idanswers DESC');
-  List<UserAnswers> ua = new List();
+  List<UserAnswers> ua = [];
   for (int i = 0; i < list.length; i++) {
-    ua.add(new UserAnswers(list[i]["idanswers"],list[i]["date"], list[i]["score"],list[i]["wrongAnswers"],list[i]["correctAnswers"],list[i]["emptyAnswers"],list[i]["allAnswers"]));
+    ua.add(new UserAnswers(list[i]["idanswers"],list[i]["date"], list[i]["score"],
+        list[i]["wrongAnswers"],list[i]["correctAnswers"],list[i]["emptyAnswers"],list[i]["allAnswers"]));
   }
   //print("db_helper.getUA() database length: "+ua.length.toString());
   return ua;
@@ -86,7 +87,7 @@ Future<int> countNonHiddenTestsInDb() async{
 Future<List<UserAnswersDetail>> getUADetailsById(int answers) async {
   var dbClient = await answersCopyDB();
   List<Map> list = await dbClient.rawQuery('SELECT id_detail,question_id,answered,is_correct,answers FROM answers_detail WHERE answers=$answers');
-  List<UserAnswersDetail> uad = new List();
+  List<UserAnswersDetail> uad = [];
   for (int i = 0; i < list.length; i++) {
     uad.add(new UserAnswersDetail(list[i]["id_detail"],list[i]["question_id"], list[i]["answered"],list[i]['is_correct'],list[i]["answers"]));
   }
